@@ -55,3 +55,5 @@ Lein, E.S. et al. (2007) Genome-wide atlas of gene expression in the adult mouse
 * __convn_fft.m__: This computes a n-dimensional convolution in the Fourier domain (uses fft rather than spatial convolution to reduce complexity).
 * __create_synth_dict.m__: This function creates a collection of spherical templates of different sizes. The output is a dictionary of template vectors, of size (Lbox^3 x length(radii)), where Lbox = box_radius*2 +1 and radii is an input to the function which contains a vector of different sphere sizes.
 ***
+
+![](https://github.com/nerdslab/celldetect/blob/master/2Dcelldetect/example-output.png?raw=true)
