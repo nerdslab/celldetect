@@ -18,9 +18,11 @@
 %             and probability map and thus represents our "confidence" in the estimate. 
 %             The algorithm terminates when ptest<=presid.
 % Nmap = Nr x Nc x Nz matrix containing labeled detected cells (1,...,D)
+% NumCellDetected = Either the number of cells detected if residual is
+%             reached or inputed cells to search.
 %%%%%%%%%%%%%%%%%%%%%%
 
-function [Centroids,Nmap] = OMP_ProbMap2D(Prob,ptr,presid,startsz,dilatesz,kmax)
+function [Centroids,Nmap,NumCellDetected] = OMP_ProbMap2D(Prob,ptr,presid,startsz,dilatesz,kmax)
 
 % threshold probability map
 Prob = Prob.*(Prob>ptr);
@@ -56,11 +58,12 @@ for ktot = 1:kmax
 
     X3 = compute2dvec(Ddilate,which_loc,Lbox,size(newtest));
     
-    newid = newid+1; % bug - increment newid twice!
+    %newid = newid+1; % bug - increment newid twice!
     newtest = newtest.*(X3==0);
     ptest = val./sum(Dict);
     
     if ptest<presid
+        NumCellDetected = ktot;
         return
     end
     Nmap(xid) = newid;
@@ -75,7 +78,7 @@ for ktot = 1:kmax
          ' Correlation = ', num2str(ptest,3)])
 
 end
-
+NumCellDetected = kmax;
 end
 
 
