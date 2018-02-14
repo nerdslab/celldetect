@@ -19,7 +19,7 @@ One easy way to compute a probability map for your image data is to use [Ilastik
 In some images where the intensity of a pixel is a good indicator of the foreground and backgroun, you can simply use the image, but you need to rescale it first so the background pixels have values close to zero and cell pixels have values close to one.
 ***
 ### Download Data ###
-If you want to run any of the demos in this repositiory, please download the data from [DropBox](https://www.dropbox.com/s/0tvqulvno0awyzj/celldetect-demo-data.zip?dl=0) first.
+If you want to run any of the demos in this repository, please download the data from [DropBox](https://www.dropbox.com/s/0tvqulvno0awyzj/celldetect-demo-data.zip?dl=0) first.
 ***
 ### Example 1 - run 3D cell finding algorithm
 To begin, run the script ___script_cellfinder.m___. This script will run the main cell finding routine ___OMP_ProbMap.m___ on the test data in the celldetect folder. The output includes two variables: (1) _Centroids_, a 10x4 matrix with the position (x,y,z) first 10 detected cells centroids (columns 1-3) and the correlation value between all detected cells and theinput probability map (column 4). (2) _Nmap_, a 200x200x100 matrix with all of the detected cells labeled with a unique ID (and the remaining volume labeled w/ zeros).
