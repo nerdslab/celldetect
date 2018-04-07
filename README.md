@@ -29,7 +29,7 @@ The parameters that you need to set:
 ### Computing a probability map for your image ###
 You must supply a probability map as input for the cell detection algorithm. There are a few options depending on the complexity of your data.
 
-1. _Gausian Mixture Model_: We supply a simple unsupervised method for computing a cell probability map which uses a Gaussian Mixture Model. This can provide a reasonable output when the color (pixel intensities) of the cells is sufficiently different from the background in the image. 
+1. _Gausian Mixture Model_: We supply a simple unsupervised method for computing a cell probability map which uses a Gaussian Mixture Model. This can provide a reasonable output when the color (pixel intensities) of the cells is different from the background in the image. 
 
 2. _Ilastik pixel classifier_: When an intensity-based classifier is not sufficient for your data, you can compute a probability map with [Ilastik](http://ilastik.org). The ilastik team provides great documentation on their website for creating a [Pixel Classifier](http://ilastik.org/documentation/pixelclassification/pixelclassification). You can also see an example of a Pixel Classifier in our demo data (see below for a link to download our data and classifiers).
 
