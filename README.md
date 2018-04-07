@@ -40,7 +40,11 @@ You must supply a probability map as input for the cell detection algorithm. The
 If you want to run any of the demos in this repository, please download the data from [DropBox](https://www.dropbox.com/s/f21jpjad487f1nv/celldetect-demo-data.zip?dl=0).
 ***
 ### Example 1 - Run the 3D cell finding algorithm on X-ray microCT data
-To begin, run the script ___script_cellfinder.m___. This script will run the main cell finding routine ___OMP_ProbMap.m___ on the test data in the celldetect folder. The output includes two variables: (1) _Centroids_out_, a 10x4 matrix with the position (x,y,z) first 10 detected cells centroids (columns 1-3) and the correlation value between all detected cells and theinput probability map (column 4). (2) _Nmap_out_, a 200x200x100 matrix with all of the detected cells labeled with a unique ID (and the remaining volume labeled w/ zeros).
+To begin, run the following script:
+```matlab
+script_cellfinder
+```
+This script will run the main cell finding routine ___OMP_ProbMap.m___ on the test data in the celldetect folder. The output includes two variables: (1) _Centroids_out_, a 10x4 matrix with the position (x,y,z) first 10 detected cells centroids (columns 1-3) and the correlation value between all detected cells and theinput probability map (column 4). (2) _Nmap_out_, a 200x200x100 matrix with all of the detected cells labeled with a unique ID (and the remaining volume labeled w/ zeros).
 
 To find more cells in the volume, set kmax to a larger number. The variable _kmax_ controls the maximum number of iterations of the algorithms (and constrains the maximum number of detected cells). 
 
@@ -69,9 +73,11 @@ script_runGMMseg
 
 ***  
   ### Example 3 - Run the 2D cell finding algorithm on a Nissl image ###
-To test our methods on 2D image data, run the script ___script_run2Dcelldetect___. This will output the centroids and map of the detected cell bodies (each cell is labeled with a unique ID).
-
-If you use the test data (from the Allen Institute Reference Atlas) provided in this example, please cite the following paper:
+To test our methods on 2D image data, run the following script:
+```matlab
+script_run2Dcelldetect
+```
+This script will output the centroids and map of the detected cell bodies (each cell is labeled with a unique ID). If you use the test data (from the Allen Institute Reference Atlas) provided in this example, please cite the following paper:
 
 Lein, E.S. et al. (2007) Genome-wide atlas of gene expression in the adult mouse brain, Nature 445: 168-176. [doi: 10.1038/nature05453](10.1038/nature05453).
 
