@@ -50,8 +50,8 @@ kmax = 100;
 [Centroids_out,Nmap_out] = OMP_ProbMap(Probmap,ptr,presid,startsz,dilatesz,kmax);
 ```
 
-#### Visualize ####
-__(1) Visualize the detected cells overlaid on probabilities__
+#### Visualize the detected cells overlaid on the probability map ####
+
   ```matlab
 figure; 
 for i=1:size(Prob,3) 
@@ -68,7 +68,7 @@ script_runGMMseg
 ```
 
 ***  
-  ### Example 3 - run 2D cell finding algorithm on a Nissl image ###
+  ### Example 3 - Run the 2D cell finding algorithm on a Nissl image ###
 To test our methods on 2D image data, run the script ___script_run2Dcelldetect___. This will output the centroids and map of the detected cell bodies (each cell is labeled with a unique ID).
 
 If you use the test data (from the Allen Institute Reference Atlas) provided in this example, please cite the following paper:
