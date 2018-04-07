@@ -1,3 +1,8 @@
+% what it does is:
+% 1. train GMM to get foreground from background
+% 2. segments out the vessels and removes them from the probmap
+% 3. returns the probmap from step 1 - vessels
+
 load('GroundTruth_V1.mat')
 viz = 1; % visualize output
 
@@ -8,7 +13,7 @@ numsamp = 2e5; % number of voxels to sample to train GMM
 vessel_ptr =0.8; % threshold for GMM probability map
 minsz = 0.5; % percentage of slices that vessel should run through
 
-ProbMap = gmmposterior_im(IM,numcomp,numselect);
+ProbMap = gmmposterior_im(IM,numcomp,numsamp);
 
 %% segment cells/vessels
 [ProbMap_out, Vmap] = remove_vessels(ProbMap, vessel_ptr, minsz);
