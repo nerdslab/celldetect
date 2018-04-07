@@ -1,6 +1,6 @@
 # Cell detection via sparse approximation
 
-This repository contains Matlab code for _detecting cells in 3D image volumes and 2D images_. 
+This repository contains Matlab code for _detecting cells in both 3D image volumes and 2D images_. 
 
 You can find further details about how we apply the methods in this repo to analyze mm-scale brain volumes in the following paper:
 
