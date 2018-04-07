@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%
-% OMP_ProbMap.m = function to detect cells and return their centroids
+% OMP_ProbMap2D.m = function to detect cells and return their centroids
 %%%
 % Input
 %%%
-% Prob = Nr x Nc x Nz matrix which contains the probability of each voxel being a cell body. (i.e., the (r,c,z) position of Prob contains the probability that the (r,c,z) voxel of an image cube lies within a cell body.)
+% Probmap = Nr x Nc matrix which contains the probability of each voxel being a cell body. (i.e., the (r,c,z) position of Prob contains the probability that the (r,c,z) voxel of an image cube lies within a cell body.)
 % ptr = threshold between (0,1) to apply to probability map (only consider voxels for which Prob(r,c,z) > ptr)
 % presid = stopping criterion is a value between (0,1) (minimum normalized correlation between template and probability map) (Example = 0.47)
 % startsz = initial size of spherical template (to use in sweep)
@@ -12,20 +12,20 @@
 %%%
 % Output
 %%%
-% Centroids = D x 4 matrix, where D = number of detected cells. 
-%             The (x,y,z) coordinate of each cell are contained in columns 1-3. 
-%             The fourth column contains the correlation (ptest) between the template 
+% Centroids = D x 3 matrix, where D = number of detected cells. 
+%             The (x,y) coordinate of each cell are contained in columns 1-2. 
+%             The third column contains the correlation (ptest) between the template 
 %             and probability map and thus represents our "confidence" in the estimate. 
 %             The algorithm terminates when ptest<=presid.
-% Nmap = Nr x Nc x Nz matrix containing labeled detected cells (1,...,D)
+% Nmap = Nr x Nc matrix containing labeled detected cells (1,...,D)
 % NumCellDetected = Either the number of cells detected if residual is
 %             reached or inputed cells to search.
 %%%%%%%%%%%%%%%%%%%%%%
 
-function [Centroids,Nmap,NumCellDetected] = OMP_ProbMap2D(Prob,ptr,presid,startsz,dilatesz,kmax)
+function [Centroids,Nmap,NumCellDetected] = OMP_ProbMap2D(Probmap,ptr,presid,startsz,dilatesz,kmax)
 
 % threshold probability map
-Prob = Prob.*(Prob>ptr);
+Prob = Probmap.*(Probmap>ptr);
 
 % create dictionary of spherical templates
 box_radius = ceil(max(startsz)/2) + 1;
