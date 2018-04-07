@@ -24,6 +24,8 @@ The parameters that you need to set:
 - _dilatesz_ is the size of the dilation template used to remove cells after they are detected (usually set to 1 or 2)
 - _kmax_ is the maximum number of cells you want to detect (a way to stop the algorithm early)
 
+***
+
 ### Step 0. Computing a probability map for your image ###
 You must supply a probability map as input for the cell detection algorithm.
 
