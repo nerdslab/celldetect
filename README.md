@@ -39,7 +39,7 @@ You must supply a probability map as input for the cell detection algorithm. The
 ### Download Data ###
 If you want to run any of the demos in this repository, please download the data from [DropBox](https://www.dropbox.com/s/f21jpjad487f1nv/celldetect-demo-data.zip?dl=0).
 ***
-### Example 1 - Run 3D cell finding algorithm 
+### Example 1 - Run the 3D cell finding algorithm on X-ray microCT data
 To begin, run the script ___script_cellfinder.m___. This script will run the main cell finding routine ___OMP_ProbMap.m___ on the test data in the celldetect folder. The output includes two variables: (1) _Centroids_out_, a 10x4 matrix with the position (x,y,z) first 10 detected cells centroids (columns 1-3) and the correlation value between all detected cells and theinput probability map (column 4). (2) _Nmap_out_, a 200x200x100 matrix with all of the detected cells labeled with a unique ID (and the remaining volume labeled w/ zeros).
 
 To find more cells in the volume, set kmax to a larger number. The variable _kmax_ controls the maximum number of iterations of the algorithms (and constrains the maximum number of detected cells). 
