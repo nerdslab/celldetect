@@ -14,9 +14,9 @@ Please direct any questions to Eva Dyer at evadyer{at}gatech{dot}edu.
 
 The input to our cell detection algorithm is a "probability map" that encodes the probability that each voxel/pixel corresponds to a cell body.
 
-One easy way to compute a probability map for your image data is to use [Ilastik](http://ilastik.org) to compute the pixel probabilities. The ilastik team provides great documentation on their website for creating a [Pixel Classifier](http://ilastik.org/documentation/pixelclassification/pixelclassification). You can also see an example of a Pixel Classifier in our 2D demo data (see below for a link to download our data and classifiers).
+One easy way to compute a probability map for your image data is to use [Ilastik](http://ilastik.org). The ilastik team provides great documentation on their website for creating a [Pixel Classifier](http://ilastik.org/documentation/pixelclassification/pixelclassification). You can also see an example of a Pixel Classifier in our demo data (see below for a link to download our data and classifiers).
 
-In some images where the intensity of a pixel is a good indicator of the foreground and backgroun, you can simply use the image, but you need to rescale it first so the background pixels have values close to zero and cell pixels have values close to one.
+In images where the intensity of a pixel is a good indicator of the foreground (cell) and background, you can simply use the image, but you need to rescale your image first so the background pixels have values close to zero and cell pixels have values close to one.
 ***
 ### Download Data ###
 If you want to run any of the demos in this repository, please download the data from [DropBox](https://www.dropbox.com/s/f21jpjad487f1nv/celldetect-demo-data.zip?dl=0).
