@@ -8,12 +8,12 @@ numcc = length(CC.PixelIdxList);
 
 numslices = zeros(numcc,1);
 for i=1:numcc
-   [~, ~, v3] = ind2sub(size(IM), CC.PixelIdxList{1,i});
+   [~, ~, v3] = ind2sub(size(ProbMap), CC.PixelIdxList{1,i});
    numslices(i) = length(unique(v3));   
 end
 
 for i=1:numcc
-    if numslices(i) < round(minsz*size(IM,3))
+    if numslices(i) < round(minsz*size(ProbMap,3))
         PmapT(CC.PixelIdxList{1,i}) = 0;
     end
 end
