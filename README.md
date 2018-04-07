@@ -26,17 +26,20 @@ The parameters that you need to set:
 
 ***
 
-### Step 0. Computing a probability map for your image ###
-You must supply a probability map as input for the cell detection algorithm.
+### Computing a probability map for your image ###
+You must supply a probability map as input for the cell detection algorithm. There are a few options depending on the complexity of your data.
 
-One easy way to compute a probability map for your image data is to use [Ilastik](http://ilastik.org). The ilastik team provides great documentation on their website for creating a [Pixel Classifier](http://ilastik.org/documentation/pixelclassification/pixelclassification). You can also see an example of a Pixel Classifier in our demo data (see below for a link to download our data and classifiers).
+1. _Gausian Mixture Model_: We supply a simple unsupervised method for computing a cell probability map which uses a Gaussian Mixture Model. This can provide a reasonable output when the color (pixel intensities) of the cells is sufficiently different from the background in the image. 
 
-In images where the intensity of a pixel is a good indicator of the foreground (cell) and background, you can simply use the image, but you need to rescale your image first so the background pixels have values close to zero and cell pixels have values close to one.
+2. _Ilastik pixel classifier_: When an intensity-based classifier is not sufficient for your data, you can compute a probability map with [Ilastik](http://ilastik.org). The ilastik team provides great documentation on their website for creating a [Pixel Classifier](http://ilastik.org/documentation/pixelclassification/pixelclassification). You can also see an example of a Pixel Classifier in our demo data (see below for a link to download our data and classifiers).
+
+3. _Use the image_: In images where the intensity of the foreground (cell) is significantly different from the background, you can simply use the image, but you need to rescale your image first so the background pixels have values close to zero and cell pixels have values close to one.
+
 ***
 ### Download Data ###
 If you want to run any of the demos in this repository, please download the data from [DropBox](https://www.dropbox.com/s/f21jpjad487f1nv/celldetect-demo-data.zip?dl=0).
 ***
-### Example 1 - Run 3D cell finding algorithm
+### Example 1 - Run 3D cell finding algorithm 
 To begin, run the script ___script_cellfinder.m___. This script will run the main cell finding routine ___OMP_ProbMap.m___ on the test data in the celldetect folder. The output includes two variables: (1) _Centroids_out_, a 10x4 matrix with the position (x,y,z) first 10 detected cells centroids (columns 1-3) and the correlation value between all detected cells and theinput probability map (column 4). (2) _Nmap_out_, a 200x200x100 matrix with all of the detected cells labeled with a unique ID (and the remaining volume labeled w/ zeros).
 
 To find more cells in the volume, set kmax to a larger number. The variable _kmax_ controls the maximum number of iterations of the algorithms (and constrains the maximum number of detected cells). 
@@ -57,7 +60,15 @@ for i=1:size(Prob,3)
 end
   ```
 ***  
-  ### Example 2 - run 2D cell finding algorithm on a Nissl image ###
+
+### Example 2 - Compute a probability map using a Gaussian Mixture Model (GMM) ###
+To compute a cell probability map using a GMM, run our demo on X-ray data:
+```matlab
+script_runGMMseg
+```
+
+***  
+  ### Example 3 - run 2D cell finding algorithm on a Nissl image ###
 To test our methods on 2D image data, run the script ___script_run2Dcelldetect___. This will output the centroids and map of the detected cell bodies (each cell is labeled with a unique ID).
 
 If you use the test data (from the Allen Institute Reference Atlas) provided in this example, please cite the following paper:
