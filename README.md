@@ -10,7 +10,7 @@ If you use any of the code or datasets in this repo, please cite this paper.
 Please direct any questions to Eva Dyer at evadyer{at}gatech{dot}edu.
 ***
 
-### Computing a probability map for your images ###
+### Step 0. Computing a probability map for your image ###
 
 The input to our cell detection algorithm is a "probability map" that encodes the probability that each voxel/pixel corresponds to a cell body.
 
