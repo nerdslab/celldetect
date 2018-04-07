@@ -10,9 +10,22 @@ If you use any of the code or datasets in this repo, please cite this paper.
 Please direct any questions to Eva Dyer at evadyer{at}gatech{dot}edu.
 ***
 
-### Step 0. Computing a probability map for your image ###
+### Overview of the method ###
+The input to our cell detection algorithm is a "probability map" that encodes the probability that each voxel/pixel corresponds to a cell body. The output is a list of the position of all detected cells as well as a map of the cells that is the same size as the input image or volume.
 
-The input to our cell detection algorithm is a "probability map" that encodes the probability that each voxel/pixel corresponds to a cell body.
+The main functions used for cell detection in the 3D and 2D case are:
+- [Centroids, Nmap] = OMP_ProbMap(Probmap,ptr,presid,startsz,dilatesz,kmax); (3D)
+- [Centroids,Nmap] = OMP_ProbMap2D(Probmap,ptr,presid,startsz,dilatesz,kmax); (2D)
+
+The parameters that you need to set:
+- _ptr_ is the probability threshold - all probabilities less than ptr will be set to zero
+- _presid_ is the stopping criterion - when the correlation between the cell template and the probmap is less than presid, the algorithm terminates
+- _startsz_ is the size of the spherical/circular template used (set this to be the average radius of cells)
+- _dilatesz_ is the size of the dilation template used to remove cells after they are detected (usually set to 1 or 2)
+- _kmax_ is the maximum number of cells you want to detect (a way to stop the algorithm early)
+
+### Step 0. Computing a probability map for your image ###
+You must supply a probability map as input for the cell detection algorithm.
 
 One easy way to compute a probability map for your image data is to use [Ilastik](http://ilastik.org). The ilastik team provides great documentation on their website for creating a [Pixel Classifier](http://ilastik.org/documentation/pixelclassification/pixelclassification). You can also see an example of a Pixel Classifier in our demo data (see below for a link to download our data and classifiers).
 
@@ -52,7 +65,7 @@ Lein, E.S. et al. (2007) Genome-wide atlas of gene expression in the adult mouse
 ***
 
 ### What's included in the 3D celldetect folder ###
-* __OMP_ProbMap.m__: This is the main function used for cell detection, as it implements our greedy sphere finding approach described in [Dyer et al. 2016](https://arxiv.org/abs/1604.03629). This algorithm takes a 3D probability map (the same size as the image data) as its input and returns the centroids and confidence value (between 0-1) of all detected cell bodies.
+* __OMP_ProbMap.m__: This is the main function used for cell detection, as it implements our greedy sphere finding approach described in [Dyer et al. 2017](https://doi.org/10.1523/ENEURO.0195-17.2017). This algorithm takes a 3D probability map (the same size as the image data) as its input and returns the centroids and confidence value (between 0-1) of all detected cell bodies.
 * __compute3dvec.m__: This function places an input 3D template (vec) at a fixed position (which_loc) in a bounding box of width = Lbox*2 + 1.
 * __convn_fft.m__: This computes a n-dimensional convolution in the Fourier domain (uses fft rather than spatial convolution to reduce complexity).
 * __create_synth_dict.m__: This function creates a collection of spherical templates of different sizes. The output is a dictionary of template vectors, of size (Lbox^3 x length(radii)), where Lbox = box_radius*2 +1 and radii is an input to the function which contains a vector of different sphere sizes.
