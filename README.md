@@ -91,3 +91,11 @@ Lein, E.S. et al. (2007) Genome-wide atlas of gene expression in the adult mouse
 ***
 
 ![](https://github.com/nerdslab/celldetect/blob/master/2Dcelldetect/example-output.png?raw=true)
+
+***
+
+_Contributors:_
+- Eva Dyer (@evadyer, Georgia Tech)
+- Will Gray Roncal (Hopkins APL)
+- TJ LaGrow (@tjlagrow, Georgia Tech)
+
